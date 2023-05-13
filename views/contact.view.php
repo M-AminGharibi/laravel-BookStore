@@ -4,7 +4,7 @@ require('partials/banner.php');
 require('partials/nav.php');
 ?>
 <main>
-    Home Page
+    Contact Page
 </main>
 <?php
 require('partials/footer.php'); 
