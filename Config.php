@@ -2,6 +2,6 @@
 return [
         'host' => 'localhost',
         'port' => '3306',
-        'dbname' => 'AminGharibi',
+        'dbname' => 'webprogramming',
         'charset'=>'utf8mb4'
     ];
