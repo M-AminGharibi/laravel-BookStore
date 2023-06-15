@@ -5,17 +5,17 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card  mt-5 mb-5">
-                    <div class="card-header">افزودن محصول</div>
+                    <div class="card-header">ویرایش محصول</div>
 
                     <div class="card-body">
-                        <form method="POST" enctype="multipart/form-data" action="{{route('add_product')}}">
+                        <form method="post" enctype="multipart/form-data" action="{{route('updates',$book->id)}}">
                             @csrf
 
                             <div class="row mb-3">
                                 <label for="title" class="col-md-4 col-form-label text-md-end">نام</label>
 
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
+                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $book->title }}" required autocomplete="title" autofocus>
 
                                     @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@
                                 <label for="author" class="col-md-4 col-form-label text-md-end">نویسنده</label>
 
                                 <div class="col-md-6">
-                                    <input id="author" type="text" class="form-control @error('author') is-invalid @enderror" name="author" value="{{ old('author') }}" required autocomplete="author" autofocus>
+                                    <input id="author" type="text" class="form-control @error('author') is-invalid @enderror" name="author" value="{{ $book->author }}" required autocomplete="author" autofocus>
 
                                     @error('author')
                                     <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                                 <label for="price" class="col-md-4 col-form-label text-md-end">قیمت</label>
 
                                 <div class="col-md-6">
-                                    <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
+                                    <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ $book->price }}" required autocomplete="price" autofocus>
 
                                     @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +55,9 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-end">توضیحات</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus>
+                                    <textarea id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $book->title }}" required autocomplete="description" autofocus>
+
+                                    {{ $book->description }}
                                     </textarea>
 
                                     @error('description')
@@ -92,38 +94,6 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="card  mt-5 mb-5">
-                    <div class="card-header">لیست محصولات</div>
-
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">نام کتاب</th>
-                                <th scope="col">نویسنده</th>
-                                <th scope="col">قیمت</th>
-                                <th scope="col">مدیریت محصول</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($allBooks as $item)
-                                <tr>
-                                    <th scope="row">{{$item->title}}</th>
-                                    <td>{{$item->author}}</td>
-                                    <td>{{$item->price}}
-                                        <span> تومان</span>
-                                    </td>
-                                    <td>
-                                        <a href="{{route('update_get',$item->id)}}"> ویرایش محصول</a>
-                                        <a href="{{route('delete',$item->id)}}"> حذف</a>
-
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
