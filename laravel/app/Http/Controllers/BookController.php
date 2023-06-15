@@ -17,4 +17,21 @@ class BookController extends Controller
         $book = Book::find($id);
         return view('product',compact('book'));
     }
+    public function compareproduct()
+    {
+        return view('compareproduct');
+    }
+    public function add_product(Request $request)
+    {
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('product'), $imageName);
+        Book::create([
+           'title' => $request->input('title'),
+           'description' => $request->input('description'),
+           'image' => '/product/' . $imageName,
+           'price' => $request->input('price'),
+           'author' => $request->input('author'),
+        ]);
+        return redirect()->route('root');
+    }
 }

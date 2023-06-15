@@ -21,11 +21,12 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/home', 'HomeController@index');
 
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/ ', [BookController::class, 'index']);
+Route::get('/', [BookController::class, 'index'])->name('root');
 Route::get('/product/{id}', [BookController::class, 'product']);
+Route::get('/compareproduct', [BookController::class, 'compareproduct']);
+Route::POST('/add_product', [BookController::class, 'add_product'])->name('add_product');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
